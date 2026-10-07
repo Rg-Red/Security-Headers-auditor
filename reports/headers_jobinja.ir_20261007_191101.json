@@ -1,0 +1,129 @@
+{
+  "tool": "Security-Headers-Auditor",
+  "version": "1.0.0",
+  "author": "USER-Bi (Rg-Red)",
+  "scanned_at": "2026-10-07T19:11:01+00:00",
+  "target_url": "https://jobinja.ir",
+  "final_url": "https://jobinja.ir",
+  "status_code": 200,
+  "error": null,
+  "redirect_chain": [
+    {
+      "url": "https://jobinja.ir",
+      "status_code": 200
+    }
+  ],
+  "score": 15,
+  "grade": "F",
+  "risk_label": "CRITICAL",
+  "findings": [
+    {
+      "header": "Strict-Transport-Security",
+      "category": "Transport",
+      "status": "MISSING",
+      "severity": "HIGH",
+      "detail": "Header absent - TLS downgrade and cookie hijack exposed",
+      "raw_value": null,
+      "fix": "Send 'Strict-Transport-Security: max-age=31536000; includeSubDomains; preload' once every response is served over HTTPS."
+    },
+    {
+      "header": "Content-Security-Policy",
+      "category": "Content Injection",
+      "status": "MISSING",
+      "severity": "HIGH",
+      "detail": "Header absent - no XSS/content injection containment",
+      "raw_value": null,
+      "fix": "Define default-src 'self' plus an explicit script-src without 'unsafe-inline'/'unsafe-eval'; use nonces or hashes for inline scripts."
+    },
+    {
+      "header": "X-Frame-Options",
+      "category": "Clickjacking",
+      "status": "PASS",
+      "severity": "INFO",
+      "detail": "DENY - no framing permitted",
+      "raw_value": "DENY",
+      "fix": "Send 'X-Frame-Options: DENY' (or SAMEORIGIN if framing is required) and mirror it with CSP frame-ancestors."
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "category": "MIME Sniffing",
+      "status": "MISSING",
+      "severity": "HIGH",
+      "detail": "Header absent - MIME sniffing can turn uploads into script",
+      "raw_value": null,
+      "fix": "Send 'X-Content-Type-Options: nosniff' on every response, including error pages and static assets."
+    },
+    {
+      "header": "Referrer-Policy",
+      "category": "Information Leakage",
+      "status": "MISSING",
+      "severity": "HIGH",
+      "detail": "Header absent - full URLs leak to third parties and cross-origin",
+      "raw_value": null,
+      "fix": "Send 'Referrer-Policy: strict-origin-when-cross-origin' (or no-referrer for maximum privacy)."
+    },
+    {
+      "header": "Permissions-Policy",
+      "category": "Feature Policy",
+      "status": "MISSING",
+      "severity": "HIGH",
+      "detail": "Header absent - camera, mic, geolocation and friends are not gated",
+      "raw_value": null,
+      "fix": "Send 'Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()' and explicitly allow-list only the APIs you use."
+    },
+    {
+      "header": "Cross-Origin-Opener-Policy",
+      "category": "Cross-Origin Isolation",
+      "status": "MISSING",
+      "severity": "HIGH",
+      "detail": "Header absent",
+      "raw_value": null,
+      "fix": "Send 'Cross-Origin-Opener-Policy: same-origin' to isolate the browsing context from cross-origin popups/tabs."
+    },
+    {
+      "header": "Cross-Origin-Resource-Policy",
+      "category": "Cross-Origin Isolation",
+      "status": "MISSING",
+      "severity": "HIGH",
+      "detail": "Header absent",
+      "raw_value": null,
+      "fix": "Send 'Cross-Origin-Resource-Policy: same-origin' (or same-site) to stop other origins from embedding your responses."
+    },
+    {
+      "header": "X-XSS-Protection",
+      "category": "Legacy",
+      "status": "PASS",
+      "severity": "INFO",
+      "detail": "Header present and well-formed",
+      "raw_value": "1; mode=block",
+      "fix": "Modern browsers removed the XSS auditor; send 'X-XSS-Protection: 0' to avoid legacy filter-based XSS side channels."
+    },
+    {
+      "header": "Cross-Origin-Embedder-Policy",
+      "category": "Cross-Origin Isolation",
+      "status": "MISSING",
+      "severity": "HIGH",
+      "detail": "Header absent",
+      "raw_value": null,
+      "fix": "Send 'Cross-Origin-Embedder-Policy: require-corp' to enable full cross-origin isolation alongside COOP."
+    },
+    {
+      "header": "Server",
+      "category": "Fingerprinting",
+      "status": "INFO",
+      "severity": "INFO",
+      "detail": "Advertised: ArvanCloud",
+      "raw_value": "ArvanCloud",
+      "fix": "Suppress or generalise the Server header (e.g. via reverse proxy) to avoid advertising exact software/version."
+    },
+    {
+      "header": "X-Powered-By",
+      "category": "Fingerprinting",
+      "status": "INFO",
+      "severity": "INFO",
+      "detail": "Not advertised (optional)",
+      "raw_value": null,
+      "fix": "Disable or strip the X-Powered-By header at the framework/proxy level to reduce fingerprinting surface."
+    }
+  ]
+}

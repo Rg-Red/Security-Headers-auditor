@@ -1,0 +1,129 @@
+{
+  "tool": "Security-Headers-Auditor",
+  "version": "1.0.0",
+  "author": "USER-Bi (Rg-Red)",
+  "scanned_at": "2026-10-07T18:43:25+00:00",
+  "target_url": "https://github.com",
+  "final_url": "https://github.com",
+  "status_code": 200,
+  "error": null,
+  "redirect_chain": [
+    {
+      "url": "https://github.com",
+      "status_code": 200
+    }
+  ],
+  "score": 80,
+  "grade": "B-",
+  "risk_label": "ACCEPTABLE",
+  "findings": [
+    {
+      "header": "Strict-Transport-Security",
+      "category": "Transport",
+      "status": "PASS",
+      "severity": "INFO",
+      "detail": "max-age=31536000s, includeSubDomains, preload",
+      "raw_value": "max-age=31536000; includeSubdomains; preload",
+      "fix": "Send 'Strict-Transport-Security: max-age=31536000; includeSubDomains; preload' once every response is served over HTTPS."
+    },
+    {
+      "header": "Content-Security-Policy",
+      "category": "Content Injection",
+      "status": "PASS",
+      "severity": "INFO",
+      "detail": "default-src fallback present with no unsafe-inline/unsafe-eval or wildcard sources",
+      "raw_value": "default-src 'none'; base-uri 'self'; child-src github.githubassets.com github.com/assets-cdn/worker/ github.com/assets/ gist.github.com/assets-cdn/worker/; connect-src 'self' uploads.github.com www.githubstatus.com collector.github.com raw.githubusercontent.com api.github.com github-cloud.s3.amazonaws.com github-production-repository-file-5c1aeb.s3.amazonaws.com github-production-upload-manifest-file-7fdce7.s3.amazonaws.com github-production-user-asset-6210df.s3.amazonaws.com *.rel.tunnels.api.visualstudio.com wss://*.rel.tunnels.api.visualstudio.com github.githubassets.com objects-origin.githubusercontent.com copilot-proxy.githubusercontent.com proxy.individual.githubcopilot.com proxy.business.githubcopilot.com proxy.enterprise.githubcopilot.com *.actions.githubusercontent.com wss://*.actions.githubusercontent.com productionresultssa0.blob.core.windows.net productionresultssa1.blob.core.windows.net productionresultssa2.blob.core.windows.net productionresultssa3.blob.core.windows.net productionresultssa4.blob.core.windows.net productionresultssa5.blob.core.windows.net productionresultssa6.blob.core.windows.net productionresultssa7.blob.core.windows.net productionresultssa8.blob.core.windows.net productionresultssa9.blob.core.windows.net productionresultssa10.blob.core.windows.net productionresultssa11.blob.core.windows.net productionresultssa12.blob.core.windows.net productionresultssa13.blob.core.windows.net productionresultssa14.blob.core.windows.net productionresultssa15.blob.core.windows.net productionresultssa16.blob.core.windows.net productionresultssa17.blob.core.windows.net productionresultssa18.blob.core.windows.net productionresultssa19.blob.core.windows.net github-production-repository-image-32fea6.s3.amazonaws.com github-production-release-asset-2e65be.s3.amazonaws.com insights.github.com wss://alive.github.com wss://alive-staging.github.com api.githubcopilot.com api.individual.githubcopilot.com api.business.githubcopilot.com api.enterprise.githubcopilot.com wss://production-copilot-host.webpubsub.azure.com api.github.com/cmc_internal/api/ edge.fullstory.com rs.fullstory.com; font-src github.githubassets.com; form-action 'self' github.com gist.github.com copilot-workspace.githubnext.com objects-origin.githubusercontent.com; frame-ancestors 'none'; frame-src viewscreen.githubusercontent.com notebooks.githubusercontent.com www.youtube-nocookie.com; img-src 'self' data: blob: github.githubassets.com media.githubusercontent.com camo.githubusercontent.com identicons.github.com avatars.githubusercontent.com private-avatars.githubusercontent.com github-cloud.s3.amazonaws.com objects.githubusercontent.com release-assets.githubusercontent.com secured-user-images.githubusercontent.com user-images.githubusercontent.com private-user-images.githubusercontent.com opengraph.githubassets.com repository-images.githubusercontent.com marketplace-screenshots.githubusercontent.com copilotprodattachments.blob.core.windows.net/github-production-copilot-attachments/ github-production-user-asset-6210df.s3.amazonaws.com customer-stories-feed.github.com spotlights-feed.github.com explore-feed.github.com *.googleusercontent.com objects-origin.githubusercontent.com *.githubusercontent.com images.ctfassets.net/8aevphvgewt8/; manifest-src 'self'; media-src github.com user-images.githubusercontent.com secured-user-images.githubusercontent.com private-user-images.githubusercontent.com github-production-user-asset-6210df.s3.amazonaws.com gist.github.com github.githubassets.com assets.ctfassets.net/8aevphvgewt8/ videos.ctfassets.net/8aevphvgewt8/; script-src github.githubassets.com 'sha256-tSjmyPUky1KbRZ0fw9VUil3wFEbeM82rtbJDygGJAXw='; style-src 'unsafe-inline' github.githubassets.com; upgrade-insecure-requests; worker-src github.githubassets.com github.com/assets-cdn/worker/ github.com/assets/ gist.github.com/assets-cdn/worker/",
+      "fix": "Define default-src 'self' plus an explicit script-src without 'unsafe-inline'/'unsafe-eval'; use nonces or hashes for inline scripts."
+    },
+    {
+      "header": "X-Frame-Options",
+      "category": "Clickjacking",
+      "status": "PASS",
+      "severity": "INFO",
+      "detail": "DENY - no framing permitted",
+      "raw_value": "deny",
+      "fix": "Send 'X-Frame-Options: DENY' (or SAMEORIGIN if framing is required) and mirror it with CSP frame-ancestors."
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "category": "MIME Sniffing",
+      "status": "PASS",
+      "severity": "INFO",
+      "detail": "nosniff - MIME sniffing disabled",
+      "raw_value": "nosniff",
+      "fix": "Send 'X-Content-Type-Options: nosniff' on every response, including error pages and static assets."
+    },
+    {
+      "header": "Referrer-Policy",
+      "category": "Information Leakage",
+      "status": "PASS",
+      "severity": "INFO",
+      "detail": "strict-origin-when-cross-origin - hardened referrer handling",
+      "raw_value": "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "fix": "Send 'Referrer-Policy: strict-origin-when-cross-origin' (or no-referrer for maximum privacy)."
+    },
+    {
+      "header": "Permissions-Policy",
+      "category": "Feature Policy",
+      "status": "MISSING",
+      "severity": "HIGH",
+      "detail": "Header absent - camera, mic, geolocation and friends are not gated",
+      "raw_value": null,
+      "fix": "Send 'Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()' and explicitly allow-list only the APIs you use."
+    },
+    {
+      "header": "Cross-Origin-Opener-Policy",
+      "category": "Cross-Origin Isolation",
+      "status": "MISSING",
+      "severity": "HIGH",
+      "detail": "Header absent",
+      "raw_value": null,
+      "fix": "Send 'Cross-Origin-Opener-Policy: same-origin' to isolate the browsing context from cross-origin popups/tabs."
+    },
+    {
+      "header": "Cross-Origin-Resource-Policy",
+      "category": "Cross-Origin Isolation",
+      "status": "MISSING",
+      "severity": "HIGH",
+      "detail": "Header absent",
+      "raw_value": null,
+      "fix": "Send 'Cross-Origin-Resource-Policy: same-origin' (or same-site) to stop other origins from embedding your responses."
+    },
+    {
+      "header": "X-XSS-Protection",
+      "category": "Legacy",
+      "status": "INFO",
+      "severity": "INFO",
+      "detail": "Modern best practice is to disable the legacy XSS auditor (value 0)",
+      "raw_value": "0",
+      "fix": "Modern browsers removed the XSS auditor; send 'X-XSS-Protection: 0' to avoid legacy filter-based XSS side channels."
+    },
+    {
+      "header": "Cross-Origin-Embedder-Policy",
+      "category": "Cross-Origin Isolation",
+      "status": "MISSING",
+      "severity": "HIGH",
+      "detail": "Header absent",
+      "raw_value": null,
+      "fix": "Send 'Cross-Origin-Embedder-Policy: require-corp' to enable full cross-origin isolation alongside COOP."
+    },
+    {
+      "header": "Server",
+      "category": "Fingerprinting",
+      "status": "INFO",
+      "severity": "INFO",
+      "detail": "Advertised: github.com",
+      "raw_value": "github.com",
+      "fix": "Suppress or generalise the Server header (e.g. via reverse proxy) to avoid advertising exact software/version."
+    },
+    {
+      "header": "X-Powered-By",
+      "category": "Fingerprinting",
+      "status": "INFO",
+      "severity": "INFO",
+      "detail": "Not advertised (optional)",
+      "raw_value": null,
+      "fix": "Disable or strip the X-Powered-By header at the framework/proxy level to reduce fingerprinting surface."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+# Git commands to publish Security-Headers-Auditor
+
+# 1. Initialize git repo
+cd C:\Users\paytakht\Documents\Security-Headers-Auditor
+git init
+
+# 2. Configure credential helper (stores credentials after first use)
+git config --global credential.helper store
+
+# 3. Create .gitignore to exclude generated reports and caches
+echo 'reports/*.json' > .gitignore
+echo '__pycache__/' >> .gitignore
+echo '*.pyc' >> .gitignore
+git add .gitignore
+
+# 4. Stage project files
+git add rules.py header_auditor.py test_headers.py requirements.txt README.md reports/.gitkeep
+
+# 5. First commit
+git commit -m "Initial commit: Security-Headers-Auditor v1.0.0 - passive HTTP security header scanner"
+
+# 6. Create the repo on GitHub (do NOT initialize with a README there)
+#    Go to: https://github.com/new
+#    Repository name: Security-Headers-Auditor
+#    Description: Passive web security header scanner with SOC terminal UI, deep header inspection and 0-100 scoring
+#    Public or Private: your choice
+
+# 7. Add the remote
+git remote add origin https://github.com/Rg-Red/Security-Headers-Auditor.git
+
+# 8. Push to GitHub
+git branch -M main
+git push -u origin main
+
+# After the first push, Git will prompt for a username and password/token.
+# The credential.helper configured above will store them for future pushes.
